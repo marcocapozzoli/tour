@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field, ValidationError, root_validator
+from pydantic import BaseModel, Field, ValidationError, root_validator, EmailStr
 
 
 class BaseSchema(BaseModel):
@@ -29,7 +29,7 @@ class DepartmentSchema(BaseSchema):
 
 class EmployeeSchema(BaseSchema):
     full_name: str = Field(example='John Snow')
-    email: str = Field(example='username@example.com')
+    email: EmailStr = Field(example='username@example.com')
     phone: str = Field(example='81999999999')
     birthday: str = Field(example='01/01/1985')
     entry_date: str = Field(example='01/01/1985')
@@ -37,8 +37,8 @@ class EmployeeSchema(BaseSchema):
     city: str = Field(example='Recife')
     department: str = Field(example='b9c25b82-0c1b-4db4-afb9-7ee375fd178e')
 
-    @root_validator(pre=True)
-    def parse_birthday(cls, values):
+    @root_validator(pre=True, allow_reuse=True)
+    def parse_dates(cls, values):
         birthday = values.get('birthday')
         entry_date = values.get('entry_date')
         departure_date = values.get('departure_date')
@@ -90,7 +90,7 @@ class CreateEmployeeSchema(EmployeeSchema):
 
 
 class UpdateEmployeeSchema(EmployeeSchema, UpdateSchema):
-    full_name: Optional[str] = Field(example='John Snow', default=None)
+    full_name: Optional[EmailStr] = Field(example='John Snow', default=None)
     email: Optional[str] = Field(example='username@example.com', default=None)
     phone: Optional[str] = Field(example='81999999999', default=None)
     birthday: Optional[str] = Field(example='01/01/1985', default=None)
