@@ -9,7 +9,7 @@ from uuid import UUID
 class ICompanyRepo(Protocol):
     
     @abstractmethod
-    def save(self, company: CompanyEntity) -> CompanyEntity:
+    def create(self, company: CompanyEntity) -> CompanyEntity:
         pass
 
     @abstractmethod
@@ -25,7 +25,7 @@ class ICompanyRepo(Protocol):
 class IDepartmentRepo(Protocol):
     
     @abstractmethod
-    def save(self, department: DepartmentEntity) -> DepartmentEntity:
+    def create(self, department: DepartmentEntity) -> DepartmentEntity:
         pass
 
     @abstractmethod
@@ -40,7 +40,7 @@ class IDepartmentRepo(Protocol):
 class IEmployeeRepo(Protocol):
     
     @abstractmethod
-    def save(self, employee: EmployeeEntity) -> EmployeeEntity:
+    def create(self, employee: EmployeeEntity) -> EmployeeEntity:
         pass
 
     @abstractmethod

@@ -9,7 +9,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.generics import ListAPIView
 
 from rest_framework.permissions import IsAdminUser
-from app.serializers import CompanySerializer
+from app.serializers import CompanySerializer, DepartmentSerializer, EmployeeSerializer
 
 
 from pydantic import ValidationError
@@ -17,7 +17,7 @@ from dataclasses import asdict
 from django_filters.rest_framework import DjangoFilterBackend
 
 from infra.factory import ControllerFactory, controller_factory
-from infra.register.models import Company, Department
+from infra.register.models import Company, Department, Employee
 
 
 class BaseView(ViewSet):
@@ -132,20 +132,20 @@ class CompanyListView(ListAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['country']
+    filterset_fields = ['country', 'city']
 
 
-# class DepartmentListView(ListAPIView):
-#     permission_classes = (IsAdminUser, )
-#     queryset = Department.objects.all()
-#     serializer_class = CompanySerializer
-#     filter_backends = [DjangoFilterBackend]
-#     filterset_fields = ['name']
+class DepartmentListView(ListAPIView):
+    permission_classes = (IsAdminUser, )
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['company']
 
 
-# class EmployeeListView(ListAPIView):
-#     permission_classes = (IsAdminUser, )
-#     queryset = Company.objects.all()
-#     serializer_class = CompanySerializer
-#     filter_backends = [DjangoFilterBackend]
-#     filterset_fields = ['country']
+class EmployeeListView(ListAPIView):
+    permission_classes = (IsAdminUser, )
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['department', 'department__company', 'city']

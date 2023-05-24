@@ -26,7 +26,7 @@ class Employee:
     
     def validate(self):
         self._validate_email()
-        self._validate_phone()
+        # self._validate_phone()
         
     def _validate_email(self):
         validator = ValidatorFactory.email()
@@ -39,13 +39,13 @@ class Employee:
                 details=f'{self.email}'
             )
     
-    def _validate_phone(self):
-        validator = ValidatorFactory.phone()
-        is_valid = validator.validate(data=self.phone)
+    # def _validate_phone(self):
+    #     validator = ValidatorFactory.phone()
+    #     is_valid = validator.validate(data=self.phone)
         
-        if not is_valid:
-            raise EntityValidationException(
-                code='EV',
-                message='Esse telefone é inválido',
-                details=f'{self.phone}'
-            )
+    #     if not is_valid:
+    #         raise EntityValidationException(
+    #             code='EV',
+    #             message='Esse telefone é inválido',
+    #             details=f'{self.phone}'
+    #         )

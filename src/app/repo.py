@@ -27,18 +27,6 @@ class CompanyRepo:
         
         current_company.update(**filtered_data)
         
-        # current_company = self._get(company.id)
-        
-        # current_company.city = company.city
-        # current_company.street = company.street
-        # current_company.country = company.country
-        # current_company.cnpj = company.cnpj
-        
-        # if current_company.is_active != company.is_active:
-        #     current_company.is_active = company.is_active
-        
-        # self._save(current_company)
-        
         return current_company[0].to_entity()    
         
     def detail(self, id: UUID) -> CompanyEntity:
@@ -86,19 +74,6 @@ class DepartmentRepo:
         current_department = self._get(filtered_data.pop('id'))
         
         current_department.update(**filtered_data)
-        
-        
-        # current_department = self._get(department.id)
-        
-        # current_department.name = department.name
-        # current_department.cost_center = department.cost_center
-        # current_department.integration_code = department.integration_code
-        # current_department.company = self._get_company(department.company)
-        
-        # if current_department.is_active != department.is_active:
-        #     current_department.is_active = department.is_active
-        
-        # self._save(current_department)
         
         return current_department[0].to_entity()    
         
@@ -153,30 +128,7 @@ class EmployeeRepo:
         
         current_employee = self._get(filtered_data.pop('id'))
         
-        current_employee.update(**filtered_data)
-              
-        
-        # if employee.full_name:
-        #     current_employee.full_name = employee.full_name
-        # if employee.email:
-        #     current_employee.email = employee.email
-        # if employee.phone:
-        #     current_employee.phone = employee.phone
-        # if employee.birthday:
-        #     current_employee.birthday = employee.birthday
-        # if employee.entry_date:
-        #     current_employee.entry_date = employee.entry_date
-        # if employee.departure_date:
-        #     current_employee.departure_date = employee.departure_date
-        # if employee.city:
-        #     current_employee.city = employee.city   
-        # if employee.department:
-        #     current_employee.department = self._get_department(employee.department)
-        
-        # if isinstance(employee.is_active, bool):
-        #     current_employee.is_active = employee.is_active
-        
-        # self._save(current_employee)
+        current_employee.update(**filtered_data)    
         
         return current_employee[0].to_entity()    
         

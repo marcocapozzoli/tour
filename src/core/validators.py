@@ -28,9 +28,9 @@ class EmailValidator:
         return True
 
 
-class PhoneValidator:
-    def validate(self, data: str) -> bool:
-        return True
+# class PhoneValidator:
+#     def validate(self, data: str) -> bool:
+#         return True
 
 
 class ValidatorFactory:
@@ -43,6 +43,6 @@ class ValidatorFactory:
     def email():
         return EmailValidator()
 
-    @staticmethod
-    def phone():
-        return PhoneValidator()
+    # @staticmethod
+    # def phone():
+    #     return PhoneValidator()

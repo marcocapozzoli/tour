@@ -1,8 +1,19 @@
-from typing import Any, Dict, List
+from typing import Any, Dict
 from uuid import UUID
-from app.schemas import CreateCompanySchema, CreateDepartmentSchema, CreateEmployeeSchema, UpdateCompanySchema, UpdateDepartmentSchema, UpdateEmployeeSchema
+from app.schemas import (
+    CreateCompanySchema,
+    CreateDepartmentSchema,
+    CreateEmployeeSchema,
+    UpdateCompanySchema,
+    UpdateDepartmentSchema,
+    UpdateEmployeeSchema
+)
 from core.entities.employee import Employee
-from core.interfaces.use_cases import ICompanyUseCases, IDepartmentUseCases, IEmployeeUseCases
+from core.interfaces.use_cases import (
+    ICompanyUseCases,
+    IDepartmentUseCases,
+    IEmployeeUseCases
+)
 from core.entities.company import Company
 from core.entities.department import Department
 
