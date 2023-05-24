@@ -1,11 +1,14 @@
 import os
-import dj_database_url
 from pathlib import Path
+
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = 'django-insecure-ru$eufo*s$s(bo^z6#brm8y%e3%cjq*1=hf#r)i@nb5-a)ivt^'
+SECRET_KEY = (
+    'django-insecure-ru$eufo*s$s(bo^z6#brm8y%e3%cjq*1=hf#r)i@nb5-a)ivt^'
+)
 
 DEBUG = True
 
@@ -61,8 +64,7 @@ DATABASES_URI = os.getenv(
 DATABASES = {
     'default': dj_database_url.parse(
         DATABASES_URI,
-        conn_max_age=int(os.environ.get('DATABASES_CONN_MAX_AGE', '4'))
-        * 3600
+        conn_max_age=int(os.environ.get('DATABASES_CONN_MAX_AGE', '4')) * 3600,
     )
 }
 
@@ -93,9 +95,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MIGRATION_MODULES = {
-    'registration': 'infra.registration.migrations'
-}
+MIGRATION_MODULES = {'registration': 'infra.registration.migrations'}
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',

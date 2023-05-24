@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('register', '0004_user'),
     ]
@@ -16,16 +15,27 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='employee',
             name='city',
-            field=models.CharField(help_text='Cidade', max_length=32, verbose_name='City'),
+            field=models.CharField(
+                help_text='Cidade', max_length=32, verbose_name='City'
+            ),
         ),
         migrations.AlterField(
             model_name='employee',
             name='email',
-            field=models.CharField(help_text='Email', max_length=64, unique=True, verbose_name='E-mail'),
+            field=models.CharField(
+                help_text='Email',
+                max_length=64,
+                unique=True,
+                verbose_name='E-mail',
+            ),
         ),
         migrations.AlterField(
             model_name='employee',
             name='full_name',
-            field=models.CharField(help_text='Nome completo', max_length=128, verbose_name='Full name'),
+            field=models.CharField(
+                help_text='Nome completo',
+                max_length=128,
+                verbose_name='Full name',
+            ),
         ),
     ]

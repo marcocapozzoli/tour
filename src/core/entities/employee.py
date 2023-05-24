@@ -1,8 +1,8 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
-from core.exceptions import EntityValidationException
 
+from core.exceptions import EntityValidationException
 from core.validators import ValidatorFactory
 
 
@@ -23,26 +23,26 @@ class Employee:
 
     def __post_init__(self):
         self.validate()
-    
+
     def validate(self):
         self._validate_email()
         # self._validate_phone()
-        
+
     def _validate_email(self):
         validator = ValidatorFactory.email()
         is_valid = validator.validate(data=self.email)
-        
+
         if not is_valid:
             raise EntityValidationException(
                 code='EV',
                 message='Esse email é inválido',
-                details=f'{self.email}'
+                details=f'{self.email}',
             )
-    
+
     # def _validate_phone(self):
     #     validator = ValidatorFactory.phone()
     #     is_valid = validator.validate(data=self.phone)
-        
+
     #     if not is_valid:
     #         raise EntityValidationException(
     #             code='EV',

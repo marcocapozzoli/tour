@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Union
-from pydantic import BaseModel, ValidationError, Field, root_validator
+
+from pydantic import BaseModel, Field, ValidationError, root_validator
 
 
 class BaseSchema(BaseModel):
@@ -23,8 +24,8 @@ class DepartmentSchema(BaseSchema):
     company: str = Field(example='b9c25b82-0c1b-4db4-afb9-7ee375fd178e')
     name: str = Field(example='Department one')
     cost_center: str = Field(example='C0001')
-    integration_code: str = Field(example='104A') 
-    
+    integration_code: str = Field(example='104A')
+
 
 class EmployeeSchema(BaseSchema):
     full_name: str = Field(example='John Snow')
@@ -35,7 +36,7 @@ class EmployeeSchema(BaseSchema):
     departure_date: str = Field(example='01/01/1985')
     city: str = Field(example='Recife')
     department: str = Field(example='b9c25b82-0c1b-4db4-afb9-7ee375fd178e')
-    
+
     @root_validator(pre=True)
     def parse_birthday(cls, values):
         birthday = values.get('birthday')
@@ -60,27 +61,32 @@ class UpdateSchema(BaseSchema):
     is_active: Optional[bool] = None
 
 
-class CreateCompanySchema(CompanySchema): ...
+class CreateCompanySchema(CompanySchema):
+    ...
 
 
 class UpdateCompanySchema(CompanySchema, UpdateSchema):
     street: Optional[str] = Field(example='Street one', default=None)
-    city:  Optional[str] = Field(example='Recife', default=None)
-    country:  Optional[str] = Field(example='Brazil', default=None)
-    cnpj:  Optional[str] = Field(example='12345678912345', default=None)
+    city: Optional[str] = Field(example='Recife', default=None)
+    country: Optional[str] = Field(example='Brazil', default=None)
+    cnpj: Optional[str] = Field(example='12345678912345', default=None)
 
 
-class CreateDepartmentSchema(DepartmentSchema): ...
+class CreateDepartmentSchema(DepartmentSchema):
+    ...
 
 
 class UpdateDepartmentSchema(DepartmentSchema, UpdateSchema):
-    company: Optional[str] = Field(example='b9c25b82-0c1b-4db4-afb9-7ee375fd178e', default=None)
+    company: Optional[str] = Field(
+        example='b9c25b82-0c1b-4db4-afb9-7ee375fd178e', default=None
+    )
     name: Optional[str] = Field(example='Department one', default=None)
     cost_center: Optional[str] = Field(example='C0001', default=None)
-    integration_code: Optional[str] = Field(example='104A', default=None) 
+    integration_code: Optional[str] = Field(example='104A', default=None)
 
 
-class CreateEmployeeSchema(EmployeeSchema): ...
+class CreateEmployeeSchema(EmployeeSchema):
+    ...
 
 
 class UpdateEmployeeSchema(EmployeeSchema, UpdateSchema):
@@ -91,4 +97,6 @@ class UpdateEmployeeSchema(EmployeeSchema, UpdateSchema):
     entry_date: Optional[str] = Field(example='01/01/1985', default=None)
     departure_date: Optional[str] = Field(example='01/01/1985', default=None)
     city: Optional[str] = Field(example='Recife', default=None)
-    department: Optional[str] = Field(example='b9c25b82-0c1b-4db4-afb9-7ee375fd178e', default=None)
+    department: Optional[str] = Field(
+        example='b9c25b82-0c1b-4db4-afb9-7ee375fd178e', default=None
+    )

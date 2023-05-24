@@ -3,12 +3,7 @@ class BaseException(Exception):
     Base class to exceptions
     """
 
-    def __init__(
-        self,
-        code: int,
-        message: str,
-        details: str = ""
-    ):
+    def __init__(self, code: int, message: str, details: str = ""):
         self.code = code
         self.message = message
         self.details = details
@@ -26,11 +21,14 @@ class BaseException(Exception):
 class EntityAlreadyExistsException(BaseException):
     ...
 
+
 class EntityValidationException(BaseException):
     ...
 
+
 class EntityDoesNotExistsException(BaseException):
     ...
-    
+
+
 class EntityUpdateException(BaseException):
     ...

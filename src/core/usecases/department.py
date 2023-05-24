@@ -1,20 +1,20 @@
 from typing import Any, Dict
 from uuid import UUID
+
 from core.entities.department import Department
 from core.exceptions import (
     EntityAlreadyExistsException,
     EntityDoesNotExistsException,
-    EntityUpdateException
+    EntityUpdateException,
 )
 from core.interfaces.repo import IDepartmentRepo
 
 
 class DepartmentUseCases:
-    
     def __init__(self, department_repo: IDepartmentRepo) -> None:
         self.repo = department_repo
 
-    def create(self, params: Dict[str, Any]) -> Department:        
+    def create(self, params: Dict[str, Any]) -> Department:
         try:
             self._validate(params)
             department = Department(**params)
@@ -23,9 +23,9 @@ class DepartmentUseCases:
             raise EntityAlreadyExistsException(
                 code='CDUC',
                 message='Erro registro do departamento',
-                details=str(e)
+                details=str(e),
             )
-    
+
     def update(self, params: Dict[str, Any]) -> Department:
         try:
             department = Department(**params)
@@ -34,9 +34,9 @@ class DepartmentUseCases:
             raise EntityUpdateException(
                 code='UDUC',
                 message='Erro na atualização da empresa',
-                details=str(e)
+                details=str(e),
             )
-    
+
     def detail(self, department_id: UUID) -> Department:
         try:
             return self.repo.detail(department_id)
@@ -44,13 +44,13 @@ class DepartmentUseCases:
             raise EntityDoesNotExistsException(
                 code='DDUC',
                 message='Erro ao obter detalhes do departamento',
-                details=f'Não existe departamento cadastrado com esse id `{department_id}`'
+                details=f'Não existe departamento cadastrado com esse id `{department_id}`',
             )
-    
+
     def _validate(self, params: Dict[str, Any]):
         if self.repo.is_exist(name=params['name'], company=params['company']):
             raise EntityAlreadyExistsException(
                 code='CDUC',
                 message='Erro registro do departamento',
-                details=f'Já existe um departamento com esse nome cadastrado para essa empresa esse'
+                details='Já existe um departamento com esse nome cadastrado para essa empresa esse',
             )

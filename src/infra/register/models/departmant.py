@@ -1,12 +1,17 @@
 from django.db import models
-from infra.register.models import Base
+
 from core.entities.department import Department as DepartmentEntity
+from infra.register.models import Base
 
 
 class Department(Base):
     name = models.CharField('Name', max_length=64, help_text='Nome')
-    cost_center = models.CharField('Cost center', max_length=64, help_text='Centro de custo')
-    integration_code = models.CharField('Integration code', max_length=64, help_text='Código de integração')
+    cost_center = models.CharField(
+        'Cost center', max_length=64, help_text='Centro de custo'
+    )
+    integration_code = models.CharField(
+        'Integration code', max_length=64, help_text='Código de integração'
+    )
     company = models.ForeignKey('company', on_delete=models.CASCADE)
 
     @staticmethod
@@ -14,9 +19,9 @@ class Department(Base):
         return Department(
             name=department.name,
             integration_code=department.integration_code,
-            cost_center=department.cost_center
+            cost_center=department.cost_center,
         )
-    
+
     def to_entity(self):
         return DepartmentEntity(
             id=str(self.id),

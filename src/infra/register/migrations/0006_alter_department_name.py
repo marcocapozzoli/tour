@@ -4,15 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('register', '0005_delete_user_alter_employee_city_alter_employee_email_and_more'),
+        (
+            'register',
+            '0005_delete_user_alter_employee_city_alter_employee_email_and_more',
+        ),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='department',
             name='name',
-            field=models.CharField(help_text='Nome', max_length=64, verbose_name='Name'),
+            field=models.CharField(
+                help_text='Nome', max_length=64, verbose_name='Name'
+            ),
         ),
     ]

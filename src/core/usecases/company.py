@@ -1,16 +1,16 @@
 from typing import Any, Dict
 from uuid import UUID
+
 from core.entities.company import Company
 from core.exceptions import (
     EntityAlreadyExistsException,
     EntityDoesNotExistsException,
-    EntityUpdateException
+    EntityUpdateException,
 )
 from core.interfaces.repo import ICompanyRepo
 
 
 class CompanyUseCases:
-    
     def __init__(self, company_repo: ICompanyRepo) -> None:
         self.repo = company_repo
 
@@ -21,11 +21,9 @@ class CompanyUseCases:
             return self.repo.create(company=company)
         except Exception as e:
             raise EntityAlreadyExistsException(
-                code='CCUC',
-                message='Erro registro da empresa',
-                details=str(e)
+                code='CCUC', message='Erro registro da empresa', details=str(e)
             )
-    
+
     def update(self, params: Dict[str, Any]) -> Company:
         try:
             company = Company(**params)
@@ -34,9 +32,9 @@ class CompanyUseCases:
             raise EntityUpdateException(
                 code='UCUC',
                 message='Erro na atualização da empresa',
-                details=str(e)
+                details=str(e),
             )
-    
+
     def detail(self, company_id: UUID) -> Company:
         try:
             return self.repo.detail(company_id)
@@ -44,7 +42,8 @@ class CompanyUseCases:
             raise EntityDoesNotExistsException(
                 code='DCUC',
                 message='Erro ao obter detalhes da empresa',
-                details=f'Não existe empresa cadastrada com esse id `{company_id}`'
+                details=f'Não existe empresa cadastrada com esse id \
+                    `{company_id}`',
             )
 
     def _validate(self, params: Dict[str, Any]):
@@ -52,5 +51,5 @@ class CompanyUseCases:
             raise EntityAlreadyExistsException(
                 code='CCUC',
                 message='Erro registro da empresa',
-                details=f'Já existe uma empresa cadastrada com esse cnpj `{params["cnpj"]}`'
+                details=f'Já existe uma empresa cadastrada com esse cnpj `{params["cnpj"]}`',
             )

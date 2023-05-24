@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('register', '0002_company_department_employee_delete_person'),
     ]
@@ -13,6 +12,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='company',
             name='cnpj',
-            field=models.CharField(help_text='Numero do CNPJ', max_length=14, unique=True, verbose_name='CNPJ'),
+            field=models.CharField(
+                help_text='Numero do CNPJ',
+                max_length=14,
+                unique=True,
+                verbose_name='CNPJ',
+            ),
         ),
     ]
