@@ -17,3 +17,20 @@ flake8:
 	@flake8 --show-source src
 
 lint: isort black flake8
+
+test-cov:
+	@poetry run pytest -x --cov=src/ --cov-report=term-missing --cov-fail-under=80
+
+up:
+	docker-compose up
+
+up_d:
+	docker-compose up -d
+
+down:
+	docker-compose down
+
+build:
+	docker-compose build
+
+all: down build up
