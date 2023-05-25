@@ -16,15 +16,17 @@ from app.serializers import (
     EmployeeSerializer,
 )
 from infra.factory import ControllerFactory, controller_factory
-from infra.register.models import Company, Department, Employee
+from infra.tour.models.company import Company
+from infra.tour.models.departmant import Department
+from infra.tour.models.employee import Employee
 
 
 class BaseView(ViewSet):
     permission_classes = (IsAdminUser,)
 
     def dispatch(self, request, *args, **kwargs):
-        if kwargs.get('model') not in ['company', 'department', 'employee']:
-            return HttpResponseNotFound('Endpoint não encontrado.')
+        if kwargs.get("model") not in ["company", "department", "employee"]:
+            return HttpResponseNotFound("Endpoint não encontrado.")
 
         self.controller = controller_factory(ControllerFactory(request.path))
 
@@ -35,24 +37,24 @@ class BaseView(ViewSet):
             object = self.controller.create_object(params=request.data)
             return Response(
                 status=201,
-                data={'success': True, 'error': None, 'data': asdict(object)},
+                data={"success": True, "error": None, "data": asdict(object)},
             )
         except ValidationError as error:
             return Response(
                 status=422,
                 data={
-                    'success': False,
-                    'error': error.errors(),
-                    'data': None,
+                    "success": False,
+                    "error": error.errors(),
+                    "data": None,
                 },
             )
         except Exception as error:
             return Response(
                 status=400,
                 data={
-                    'success': False,
-                    'error': error.to_dict(),
-                    'data': None,
+                    "success": False,
+                    "error": error.to_dict(),
+                    "data": None,
                 },
             )
 
@@ -63,24 +65,24 @@ class BaseView(ViewSet):
             object = self.controller.detail_object(object_id)
             return Response(
                 status=200,
-                data={'success': True, 'error': None, 'data': asdict(object)},
+                data={"success": True, "error": None, "data": asdict(object)},
             )
         except ValidationError as error:
             return Response(
                 status=422,
                 data={
-                    'success': False,
-                    'error': error.errors(),
-                    'data': None,
+                    "success": False,
+                    "error": error.errors(),
+                    "data": None,
                 },
             )
         except Exception as error:
             return Response(
                 status=400,
                 data={
-                    'success': False,
-                    'error': error.to_dict(),
-                    'data': None,
+                    "success": False,
+                    "error": error.to_dict(),
+                    "data": None,
                 },
             )
 
@@ -90,24 +92,24 @@ class BaseView(ViewSet):
             object = self.controller.update_object(params=request.data)
             return Response(
                 status=200,
-                data={'success': True, 'error': None, 'data': asdict(object)},
+                data={"success": True, "error": None, "data": asdict(object)},
             )
         except ValidationError as error:
             return Response(
                 status=422,
                 data={
-                    'success': False,
-                    'error': error.errors(),
-                    'data': None,
+                    "success": False,
+                    "error": error.errors(),
+                    "data": None,
                 },
             )
         except Exception as error:
             return Response(
                 status=400,
                 data={
-                    'success': False,
-                    'error': error.to_dict(),
-                    'data': None,
+                    "success": False,
+                    "error": error.to_dict(),
+                    "data": None,
                 },
             )
 
@@ -117,7 +119,7 @@ class CompanyListView(ListAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['country', 'city']
+    filterset_fields = ["country", "city"]
 
 
 class DepartmentListView(ListAPIView):
@@ -125,7 +127,7 @@ class DepartmentListView(ListAPIView):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['company']
+    filterset_fields = ["company"]
 
 
 class EmployeeListView(ListAPIView):
@@ -133,4 +135,4 @@ class EmployeeListView(ListAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['department', 'department__company', 'city']
+    filterset_fields = ["department", "department__company", "city"]

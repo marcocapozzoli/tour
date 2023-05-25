@@ -1,11 +1,11 @@
 create-migrations:
-	@python src/manage.py makemigrations
+	@python src/infra/manage.py makemigrations
 
 apply-migrations:
-	@python src/manage.py migrate
+	@python src/infra/manage.py migrate
 
 run-app:
-	@python src/manage.py runserver
+	@python src/infra/manage.py runserver
 
 isort:
 	@isort src --multi-line=3 --trailing-comma --force-grid-wrap=0 --use-parentheses --line-width=88 -l 79

@@ -7,7 +7,7 @@ from core.validators import ValidatorFactory
 
 
 @dataclass
-class Company:
+class CompanyEntity:
     street: str
     city: str
     country: str
@@ -27,7 +27,7 @@ class Company:
 
             if not is_valid:
                 raise EntityValidationException(
-                    code='EV',
-                    message='Esse Cnpj é inválido',
-                    details=f'{self.cnpj}',
+                    code="EV",
+                    message="Esse Cnpj é inválido",
+                    details=f"{self.cnpj}",
                 )

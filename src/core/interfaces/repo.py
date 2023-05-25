@@ -2,9 +2,9 @@ from abc import abstractmethod
 from typing import Protocol
 from uuid import UUID
 
-from core.entities.company import Company as CompanyEntity
-from core.entities.department import Department as DepartmentEntity
-from core.entities.employee import Employee as EmployeeEntity
+from core.entities.company import CompanyEntity
+from core.entities.department import DepartmentEntity
+from core.entities.employee import EmployeeEntity
 
 
 class ICompanyRepo(Protocol):

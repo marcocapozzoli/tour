@@ -10,17 +10,17 @@ from infra.api import (
 urlpatterns = [
     path(
         route="api/v1/<str:model>/create",
-        view=BaseView.as_view({'post': 'create'}),
+        view=BaseView.as_view({"post": "create"}),
         name="create",
     ),
     path(
         route="api/v1/<str:model>/detail/<uuid:object_id>",
-        view=BaseView.as_view({'get': 'retrieve'}),
+        view=BaseView.as_view({"get": "retrieve"}),
         name="detail",
     ),
     path(
         route="api/v1/<str:model>/update/<uuid:object_id>",
-        view=BaseView.as_view({'put': 'update'}),
+        view=BaseView.as_view({"put": "update"}),
         name="update",
     ),
     path(

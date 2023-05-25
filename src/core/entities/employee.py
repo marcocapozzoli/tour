@@ -2,12 +2,9 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
 
-from core.exceptions import EntityValidationException
-from core.validators import ValidatorFactory
-
 
 @dataclass
-class Employee:
+class EmployeeEntity:
     full_name: str
     email: str
     phone: str
@@ -25,7 +22,7 @@ class Employee:
     #     self.validate()
 
     # def validate(self):
-        # self._validate_phone()
+    # self._validate_phone()
 
     # def _validate_phone(self):
     #     validator = ValidatorFactory.phone()

@@ -4,7 +4,7 @@ from itertools import cycle
 
 class CnpjValidator:
     def validate(self, data: str) -> bool:
-        cnpj = re.sub(r'[^0-9]', '', data)
+        cnpj = re.sub(r"[^0-9]", "", data)
 
         if len(cnpj) != 14:
             return False

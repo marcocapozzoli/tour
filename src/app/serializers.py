@@ -1,12 +1,14 @@
 from rest_framework.serializers import ModelSerializer
 
-from infra.register.models import Company, Department, Employee
+from infra.tour.models.company import Company
+from infra.tour.models.departmant import Department
+from infra.tour.models.employee import Employee
 
 
 class CompanySerializer(ModelSerializer):
     class Meta:
         model = Company
-        fields = '__all__'
+        fields = "__all__"
 
 
 class DepartmentSerializer(ModelSerializer):

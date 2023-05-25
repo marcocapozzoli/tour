@@ -56,17 +56,17 @@ def controller_factory(
     employee_usecase = factory.employee_usecase()
     employee_repo = factory.employee_repo()
 
-    if 'company' in factory.name:
+    if "company" in factory.name:
         return company_controller(
             use_case=company_usecase(company_repo=company_repo())
         )
 
-    if 'department' in factory.name:
+    if "department" in factory.name:
         return department_controller(
             use_case=department_usecase(department_repo=department_repo())
         )
 
-    if 'employee' in factory.name:
+    if "employee" in factory.name:
         return employee_controller(
             use_case=employee_usecase(employee_repo=employee_repo())
         )

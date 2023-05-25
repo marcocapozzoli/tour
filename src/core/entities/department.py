@@ -4,7 +4,7 @@ from typing import Optional
 
 
 @dataclass
-class Department:
+class DepartmentEntity:
     name: str
     cost_center: str
     integration_code: str

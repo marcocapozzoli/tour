@@ -1,18 +1,21 @@
 from django.db import models
 
-from core.entities.department import Department as DepartmentEntity
-from infra.register.models import Base
+from core.entities.department import DepartmentEntity
+from tour.models.base import Base
 
 
 class Department(Base):
-    name = models.CharField('Name', max_length=64, help_text='Nome')
+    name = models.CharField("Name", max_length=64, help_text="Nome")
     cost_center = models.CharField(
-        'Cost center', max_length=64, help_text='Centro de custo'
+        "Cost center", max_length=64, help_text="Centro de custo"
     )
     integration_code = models.CharField(
-        'Integration code', max_length=64, help_text='Código de integração'
+        "Integration code", max_length=64, help_text="Código de integração"
     )
-    company = models.ForeignKey('company', on_delete=models.CASCADE)
+    company = models.ForeignKey("company", on_delete=models.CASCADE)
+
+    class Meta:
+        app_label = 'tour'
 
     @staticmethod
     def from_entity(department: DepartmentEntity):

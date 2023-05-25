@@ -12,9 +12,9 @@ class BaseException(Exception):
 
     def to_dict(self):
         return {
-            'code': self.code,
-            'message': self.message,
-            'details': self.details,
+            "code": self.code,
+            "message": self.message,
+            "details": self.details,
         }
 
 

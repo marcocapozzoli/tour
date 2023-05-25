@@ -1,24 +1,29 @@
 from django.db import models
 
-from core.entities.employee import Employee as EmployeeEntity
-from infra.register.models import Base, Department
+from core.entities.employee import EmployeeEntity
+from tour.models.base import Base
+
+# from tour.models.departmant import Department
 
 
 class Employee(Base):
     full_name = models.CharField(
-        'Full name', max_length=128, help_text='Nome completo'
+        "Full name", max_length=128, help_text="Nome completo"
     )
     email = models.CharField(
-        'E-mail', max_length=64, unique=True, help_text='Email'
+        "E-mail", max_length=64, unique=True, help_text="Email"
     )
-    phone = models.CharField('Phone', max_length=14, help_text='Telefone')
-    birthday = models.DateField('Birthday', help_text='Data de aniversário')
-    entry_date = models.DateField('Entry date', help_text='Data de ingresso')
+    phone = models.CharField("Phone", max_length=14, help_text="Telefone")
+    birthday = models.DateField("Birthday", help_text="Data de aniversário")
+    entry_date = models.DateField("Entry date", help_text="Data de ingresso")
     departure_date = models.DateField(
-        'Departure date', help_text='Data de desligamento'
+        "Departure date", help_text="Data de desligamento"
     )
-    city = models.CharField('City', max_length=32, help_text='Cidade')
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    city = models.CharField("City", max_length=32, help_text="Cidade")
+    department = models.ForeignKey("tour.Department", on_delete=models.CASCADE)
+
+    class Meta:
+        app_label = 'tour'
 
     @classmethod
     def from_entity(cls, employee: EmployeeEntity):

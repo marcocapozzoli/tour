@@ -1,19 +1,22 @@
 from django.db import models
 
-from core.entities.company import Company as CompanyEntity
-from infra.register.models import Base
+from core.entities.company import CompanyEntity
+from tour.models.base import Base
 
 
 class Company(Base):
     cnpj = models.CharField(
-        'CNPJ', max_length=14, unique=True, help_text='Numero do CNPJ'
+        "CNPJ", max_length=14, unique=True, help_text="Numero do CNPJ"
     )
-    street = models.CharField('Street', max_length=64, help_text='Logradouro,')
-    city = models.CharField('City', max_length=64, help_text='Cidade')
-    country = models.CharField('Country', max_length=32, help_text='Pais')
+    street = models.CharField("Street", max_length=64, help_text="Logradouro,")
+    city = models.CharField("City", max_length=64, help_text="Cidade")
+    country = models.CharField("Country", max_length=32, help_text="Pais")
+
+    class Meta:
+        app_label = 'tour'
 
     @staticmethod
-    def from_entity(company: CompanyEntity):
+    def from_entity(company):
         return Company(
             cnpj=company.cnpj,
             street=company.street,
