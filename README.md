@@ -83,6 +83,17 @@ POST /api/token/
 }
 ```
 
+### OBS:
+Em toda requisição deve ser passado esse token gerado na header da requisição como Baerer Token
+
+Exemplo:
+```
+headers = {
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1MDY4NjIzLCJpYXQiOjE2ODUwNjgzMjMsImp0aSI6IjE1ZWMzZGVhNDM5NDQ2MmRhNjRhMGNjMmE2YTVhYmNhIiwidXNlcl9pZCI6Mn0.Bi8KiFcdLVKaS1jSDT9ulvKB-w-ds3Ws5_s6UPJeukQ',
+  'Content-Type': 'application/json'
+}
+```
+
 **2. Endpoints - Empresa**
 
 1. Criar Empresa
