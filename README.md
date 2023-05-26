@@ -4,9 +4,6 @@
 
 Essa é uma aplicação de controle de cadastro de funcionários onde é permitido cadastrar, visualizar, editar e inativar, funcionários, departamentos e empresas
 
-Below Screenshot from the browsable API:
-![image](/readme_img/main_screen1.png?raw=true "Main_Screen")
-
 ## 🚀 Ferramentas
 
 Essas foram as principais tecnologias utilizadas:
@@ -30,6 +27,8 @@ git clone git@github.com:marcocapozzoli/tour.git
 
 **2. Preparando o ambiente**
 
+Obs: Tenha o Docker e o Docker-compose instalados e de preferencia o `make` também.
+
 Utilizei o docker para simplificar a execução do código. Então se você tem as ferramenta `make` e o `docker` instalados em sua maquina, bastar está na raiz do projeto e rodar o seguinte comando
 
 ```
@@ -39,16 +38,29 @@ make all
 Caso você não tenha o make mas tenha o `docker` e `docker-compose` basta rodar o comando abaixo:
 
 ```
-docker-compose up
+docker-compose up -d
 ```
 
 Isso vai criar todo o ambiente, instalar todas as dependencias, rodar as migrações no banco e levandar o servidor. Com isso a aplicação já estara pronta.
+
 
 ## Execução
 
 Após rodar os comandos acima a aplicação estará disponível em [http://localhost:8000](http://localhost:8000).
 
 **1. Gerando um token**
+
+Após o servidor estiver rodando é necessário criar um superusuário para acessar os endpoints. Caso tenha o `make` execute
+
+```
+make create-superuser
+```
+
+Caso não tenha o `make` e esteja com o `docker` execute
+
+```
+docker exec -it tour python src/infra/manage.py createsuperuser
+```
 
 Para acessar qualquer endpoint é necessário está logado e para isso para fazer uma requisição para o endpoint abaixo passando as credenciais `username` e `password` e com isso utilizar o `access` para acessar os endpoints
 
@@ -127,7 +139,7 @@ GET /api/v1/company/detail/:id
     "id": "617971c2-264e-4c9b-8b3b-e7abdca45f2e",
     "updated_at": "2023-05-26T00:28:10.289884Z",
     "created_at": "2023-05-26T00:28:10.289862Z"
-  }"
+  }
 }
 ```
 
@@ -299,7 +311,7 @@ GET /api/v1/department/detail/:id
 
 ### Requisição
 
-PATCH /api/v1/department/update/617971c2-264e-4c9b-8b3b-e7abdca45f2e 
+PATCH /api/v1/department/update/:id 
 
 ```json
 {
@@ -573,15 +585,17 @@ GET /api/v1/employee/list?department=:id&department__company=:id&city=City
 }
 ```
 
-## 📎 Versioning
+## Testes
 
-1.0.0.0
+Você pode rodar os teste e vê a cobertura rodando com o comando
 
-## 🧔 Authors
+```
+make test-cov
+```
 
-* **Marco Capozzoli**: @marcocapozzoli (https://github.com/marcocapozzoli)
+Caso não tenha o make pode rodar o comando
 
-## 📚 Referências
-- [Django Rest Framework](https://www.django-rest-framework.org/)
-- [Django](https://www.djangoproject.com/)
-- [Swagger](https://drf-yasg.readthedocs.io/en/stable/)
+
+```
+docker exec -it tour coverage run src/infra/manage.py test -v 2 && docker exec -it tour coverage report
+```

@@ -8,7 +8,7 @@ run-app:
 	@python src/infra/manage.py runserver
 
 create-superuser:
-	@python src/infra/manage.py createsuperuser --noinput
+	@docker exec -it tour python src/infra/manage.py createsuperuser
 
 isort:
 	@isort src --multi-line=3 --trailing-comma --force-grid-wrap=0 --use-parentheses --line-width=88 -l 79
@@ -22,7 +22,7 @@ flake8:
 lint: isort black flake8
 
 test-cov:
-	@coverage run src/infra/manage.py test -v 2 && coverage report
+	@docker exec -it tour coverage run src/infra/manage.py test -v 2 && docker exec -it tour coverage report
 
 up:
 	docker-compose up
@@ -36,4 +36,4 @@ down:
 build:
 	docker-compose build
 
-all: down build up
+all: down build up_d
