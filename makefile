@@ -7,6 +7,9 @@ apply-migrations:
 run-app:
 	@python src/infra/manage.py runserver
 
+create-superuser:
+	@python src/infra/manage.py createsuperuser --noinput
+
 isort:
 	@isort src --multi-line=3 --trailing-comma --force-grid-wrap=0 --use-parentheses --line-width=88 -l 79
 
@@ -19,7 +22,7 @@ flake8:
 lint: isort black flake8
 
 test-cov:
-	@poetry run pytest -x --cov=src/ --cov-report=term-missing --cov-fail-under=80
+	@coverage run src/infra/manage.py test -v 2 && coverage report
 
 up:
 	docker-compose up

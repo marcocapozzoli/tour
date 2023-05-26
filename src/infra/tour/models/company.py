@@ -1,7 +1,7 @@
 from django.db import models
 
 from core.entities.company import CompanyEntity
-from tour.models.base import Base
+from infra.tour.models.base import Base
 
 
 class Company(Base):

@@ -26,6 +26,8 @@ class CompanyRepo:
         current_company = self._get(filtered_data.pop("id"))
 
         current_company.update(**filtered_data)
+        
+        self._save(current_company[0])
 
         return current_company[0].to_entity()
 
@@ -73,6 +75,8 @@ class DepartmentRepo:
         current_department = self._get(filtered_data.pop("id"))
 
         current_department.update(**filtered_data)
+        
+        self._save(current_department[0])
 
         return current_department[0].to_entity()
 
@@ -129,6 +133,8 @@ class EmployeeRepo:
         current_employee = self._get(filtered_data.pop("id"))
 
         current_employee.update(**filtered_data)
+        
+        self._save(current_employee[0])
 
         return current_employee[0].to_entity()
 

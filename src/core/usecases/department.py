@@ -52,5 +52,5 @@ class DepartmentUseCases:
             raise EntityAlreadyExistsException(
                 code="CDUC",
                 message="Erro registro do departamento",
-                details="Já existe um departamento com esse nome cadastrado para essa empresa esse",
+                details="Já existe um departamento com esse nome cadastrado para essa empresa",
             )

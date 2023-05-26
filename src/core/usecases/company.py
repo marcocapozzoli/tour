@@ -42,8 +42,7 @@ class CompanyUseCases:
             raise EntityDoesNotExistsException(
                 code="DCUC",
                 message="Erro ao obter detalhes da empresa",
-                details=f"Não existe empresa cadastrada com esse id \
-                    `{company_id}`",
+                details=f"Não existe empresa cadastrada com esse id `{company_id}`",
             )
 
     def _validate(self, params: Dict[str, Any]):

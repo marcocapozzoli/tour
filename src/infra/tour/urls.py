@@ -20,7 +20,7 @@ urlpatterns = [
     ),
     path(
         route="api/v1/<str:model>/update/<uuid:object_id>",
-        view=BaseView.as_view({"put": "update"}),
+        view=BaseView.as_view({"patch": "update"}),
         name="update",
     ),
     path(

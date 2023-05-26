@@ -22,25 +22,7 @@ class CnpjValidator:
         return True
 
 
-class EmailValidator:
-    def validate(self, data: str) -> bool:
-        return True
-
-
-# class PhoneValidator:
-#     def validate(self, data: str) -> bool:
-#         return True
-
-
 class ValidatorFactory:
     @staticmethod
     def cnpj():
         return CnpjValidator()
-
-    @staticmethod
-    def email():
-        return EmailValidator()
-
-    # @staticmethod
-    # def phone():
-    #     return PhoneValidator()

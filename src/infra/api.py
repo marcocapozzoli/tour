@@ -5,7 +5,7 @@ from django.http import HttpResponseNotFound
 from django_filters.rest_framework import DjangoFilterBackend
 from pydantic import ValidationError
 from rest_framework.generics import ListAPIView
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
